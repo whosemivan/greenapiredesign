@@ -1,0 +1,80 @@
+---
+import clsx from 'clsx';
+import { Image } from 'astro:assets';
+import Container from '@/components/ui/Container/Container.astro';
+import { Button } from '@/components/ui/Button/Button';
+import ChatIcon from '@/assets/icons/chat.svg';
+import CodeIcon from '@/assets/icons/code.svg';
+import demoBotQrImage from '@/assets/images/demo-bot-qr.png';
+import { DEMO_BOT_DOCS_URL, DEMO_BOT_PHONE, DEMO_BOT_URL } from '@/constants/links';
+import { DEMO_BOT_REPOSITORIES_LIST } from '@/constants/demoBot';
+import s from './DemoBot.module.scss';
+---
+
+<section class={s.demoBot} id="demo" aria-labelledby="demo-title">
+	<Container>
+		<div class={s.card}>
+			<div class={s.content}>
+				<p class={s.badge}>Live demo</p>
+				<h2 class={s.title} id="demo-title">
+					Протестируйте работу прямо сейчас
+				</h2>
+				<p class={s.description}>
+					Отсканируйте QR-код или нажмите кнопку, чтобы начать диалог с демо чат-ботом в WhatsApp*. Выберите
+					язык для общения. Начните общение с ChatGPT, выбрав 14 пункт в меню.
+				</p>
+
+				<div class={s.actions}>
+					<Button href={DEMO_BOT_URL} size="large" isExternal>
+						<ChatIcon class={s.chatIcon} aria-hidden="true" />
+						Начать диалог с ботом
+					</Button>
+					<Button href={DEMO_BOT_DOCS_URL} variant="ghost" size="medium">
+						Документация демо
+					</Button>
+				</div>
+
+				<div class={s.repositories}>
+					<p class={s.repositoriesTitle}>
+						Исходный код демо чат-бота открыт. На основе этого кода легко сможете написать своего чат-бота:
+					</p>
+					<ul class={s.repositoriesList}>
+						{DEMO_BOT_REPOSITORIES_LIST.map((repository) => (
+							<li>
+								<a
+									class={s.repositoryLink}
+									href={repository.href}
+									target="_blank"
+									rel="noopener noreferrer"
+								>
+									<CodeIcon class={clsx(s.repositoryIcon, s[repository.tone])} aria-hidden="true" />
+									{repository.label}
+								</a>
+							</li>
+						))}
+					</ul>
+				</div>
+			</div>
+
+			<div class={s.qrCard}>
+				<div class={s.qrFrame}>
+					<Image
+						class={s.qrImage}
+						src={demoBotQrImage}
+						alt="QR-код для перехода в чат с демо-ботом GREEN-API в WhatsApp"
+						width={400}
+						height={400}
+						loading="lazy"
+					/>
+				</div>
+				<p class={s.qrTitle}>Наведите камеру смартфона</p>
+				<p class={s.qrText}>
+					Или напишите в WhatsApp*:
+					<a class={s.qrPhone} href={DEMO_BOT_URL} target="_blank" rel="noopener noreferrer">
+						{DEMO_BOT_PHONE}
+					</a>
+				</p>
+			</div>
+		</div>
+	</Container>
+</section>

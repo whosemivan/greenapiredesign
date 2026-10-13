@@ -1,0 +1,109 @@
+@use '@/styles/breakpoints' as *;
+@use '@/styles/animations';
+
+.videoPlayer {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 16px;
+	width: 100%;
+}
+
+.screen {
+	position: relative;
+	width: 100%;
+	aspect-ratio: 674 / 345;
+	overflow: hidden;
+	border-radius: var(--radius-md);
+	background: var(--color-surface);
+	box-shadow: 0 25px 50px -12px rgb(0 0 0 / 40%);
+
+	@include mobile {
+		aspect-ratio: 16 / 9;
+	}
+}
+
+.frame {
+	width: 100%;
+	height: 100%;
+	border: 0;
+	@include animations.fadeInAnimation();
+}
+
+.poster {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 16px;
+	width: 100%;
+	height: 100%;
+	background: radial-gradient(circle at 50% 50%, rgb(78 222 163 / 8%) 0%, transparent 60%), var(--color-surface);
+
+	@include hover {
+		.playButton {
+			color: var(--color-accent);
+			transform: scale(1.08);
+		}
+
+		.posterCaption {
+			color: var(--color-text);
+		}
+	}
+}
+
+.playButton {
+	display: flex;
+	color: #d9d9d9;
+	transition:
+		transform 0.25s ease,
+		color 0.25s ease;
+}
+
+.playIcon {
+	width: 78px;
+	height: 92px;
+
+	@include mobile {
+		width: 52px;
+		height: 61px;
+	}
+}
+
+.posterCaption {
+	font-family: var(--font-mono);
+	font-size: 12px;
+	line-height: 16px;
+	color: var(--color-text-muted);
+	transition: color 0.2s ease;
+}
+
+.sourcesList {
+	display: flex;
+	gap: 4px;
+	padding: 4px;
+	border-radius: var(--radius-full);
+	background: var(--color-surface);
+}
+
+.sourceButton {
+	padding: 6px 16px;
+	border-radius: var(--radius-full);
+	font-family: var(--font-mono);
+	font-size: 12px;
+	font-weight: 600;
+	line-height: 16px;
+	color: var(--color-text-secondary);
+	transition:
+		background-color 0.2s ease,
+		color 0.2s ease;
+
+	@include hover {
+		color: var(--color-text);
+	}
+}
+
+.sourceButtonActive {
+	background: var(--color-surface-raised);
+	color: var(--color-accent);
+}

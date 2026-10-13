@@ -1,0 +1,61 @@
+@use '@/styles/animations';
+
+.formField {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+	min-width: 0;
+}
+
+.label {
+	font-family: var(--font-mono);
+	font-size: 12px;
+	line-height: 16px;
+	color: var(--color-text-secondary);
+}
+
+.control {
+	width: 100%;
+	padding: 14px 16px;
+	border: 1px solid transparent;
+	border-radius: var(--radius-sm);
+	background: var(--color-surface);
+	font-size: 13px;
+	line-height: 20px;
+	color: var(--color-text);
+	resize: vertical;
+	transition:
+		border-color 0.2s ease,
+		box-shadow 0.2s ease;
+
+	&::placeholder {
+		color: var(--color-text-muted);
+	}
+
+	&:hover {
+		border-color: rgb(255 255 255 / 8%);
+	}
+
+	&:focus {
+		border-color: var(--color-accent);
+		box-shadow: 0 0 0 3px rgb(78 222 163 / 15%);
+		outline: none;
+	}
+}
+
+.controlInvalid {
+	border-color: #f87171;
+
+	&:hover,
+	&:focus {
+		border-color: #f87171;
+		box-shadow: 0 0 0 3px rgb(248 113 113 / 15%);
+	}
+}
+
+.error {
+	font-size: 12px;
+	line-height: 16px;
+	color: #f87171;
+	@include animations.fadeInAnimation(0.2s);
+}

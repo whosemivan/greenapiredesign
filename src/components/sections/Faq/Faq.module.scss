@@ -1,0 +1,130 @@
+@use '@/styles/breakpoints' as *;
+@use '@/styles/typography' as *;
+
+.faq {
+	padding: 96px 0;
+	background: var(--color-bg-deep);
+
+	@include mobile {
+		padding: 64px 0;
+	}
+}
+
+.content {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 64px;
+	max-width: 912px;
+	margin: 0 auto;
+
+	@include mobile {
+		gap: 40px;
+	}
+}
+
+.faqList {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	width: 100%;
+}
+
+.item {
+	overflow: hidden;
+	border-radius: var(--radius-lg);
+	background: var(--color-surface);
+	box-shadow: var(--shadow-soft);
+	transition: box-shadow 0.25s ease;
+	interpolate-size: allow-keywords;
+
+	// Плавное раскрытие в браузерах с поддержкой ::details-content
+	&::details-content {
+		height: 0;
+		overflow: hidden;
+		transition:
+			height 0.3s ease,
+			content-visibility 0.3s allow-discrete;
+	}
+
+	&[open] {
+		box-shadow:
+			var(--shadow-soft),
+			inset 0 0 0 1px rgb(78 222 163 / 15%);
+
+		&::details-content {
+			height: auto;
+		}
+
+		.chevron {
+			transform: rotate(180deg);
+		}
+	}
+}
+
+.question {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 16px;
+	padding: 24px;
+	list-style: none;
+	cursor: pointer;
+
+	&::-webkit-details-marker {
+		display: none;
+	}
+
+	@include hover {
+		.questionText {
+			color: var(--color-accent);
+		}
+	}
+
+	@include mobile {
+		padding: 20px;
+	}
+}
+
+.questionText {
+	@include heading-3;
+	color: var(--color-text);
+	transition: color 0.2s ease;
+
+	@include mobile {
+		font-size: 16px;
+		line-height: 24px;
+	}
+}
+
+.chevron {
+	flex-shrink: 0;
+	width: 12px;
+	height: auto;
+	color: var(--color-accent);
+	transition: transform 0.3s ease;
+}
+
+.answer {
+	@include body;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 12px;
+	padding: 0 24px 24px;
+	color: var(--color-text-secondary);
+
+	@include mobile {
+		padding: 0 20px 20px;
+	}
+}
+
+.readMore,
+.allQuestions {
+	@include mono-small;
+	color: var(--color-accent);
+
+	@include hover {
+		text-decoration: underline;
+	}
+}

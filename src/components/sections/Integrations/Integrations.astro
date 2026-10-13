@@ -1,0 +1,63 @@
+---
+import Container from '@/components/ui/Container/Container.astro';
+import SectionHeading from '@/components/ui/SectionHeading/SectionHeading.astro';
+import { ContentTabs } from '@/islands/ContentTabs/ContentTabs';
+import { CHATBOTS_LIST, INTEGRATIONS_LIST, SDK_LIST } from '@/constants/integrations';
+import { SITE_URL } from '@/constants/links';
+import ToolCard from './components/ToolCard.astro';
+import s from './Integrations.module.scss';
+
+const tabsList = [
+	{ id: 'integrations', label: 'Интеграции' },
+	{ id: 'sdk', label: 'SDK' },
+	{ id: 'chatbots', label: 'Чат-боты' },
+];
+---
+
+<section class={s.integrations} id="integrations" aria-labelledby="integrations-title">
+	<Container class={s.container}>
+		<SectionHeading
+			eyebrow="Экосистема совместимости"
+			title="Готовые интеграции с сервисами и CRM"
+			description="Подключайте WhatsApp* к no-code платформам, CRM, таблицам, мессенджерам для команд и системам мониторинга."
+			titleId="integrations-title"
+		/>
+
+		<ContentTabs client:visible tabsList={tabsList} ariaLabel="Способ подключения">
+			<div slot="integrations" class={s.panel}>
+				<ul class={s.toolsList}>
+					{INTEGRATIONS_LIST.map(({ icon, title, caption, href }) => (
+						<li>
+							<ToolCard icon={icon} title={title} caption={caption} href={href} />
+						</li>
+					))}
+				</ul>
+				<a class={s.allLink} href={`${SITE_URL}/docs/integration/`}>
+					Все интеграции →
+				</a>
+			</div>
+
+			<div slot="sdk" class={s.panel}>
+				<p class={s.panelTitle}>Подключите вашу систему к WhatsApp*</p>
+				<ul class={s.toolsList}>
+					{SDK_LIST.map(({ title, href }) => (
+						<li>
+							<ToolCard title={title} caption="SDK библиотека" href={href} />
+						</li>
+					))}
+				</ul>
+			</div>
+
+			<div slot="chatbots" class={s.panel}>
+				<p class={s.panelTitle}>Разработайте чат-бота</p>
+				<ul class={s.toolsList}>
+					{CHATBOTS_LIST.map(({ title, href }) => (
+						<li>
+							<ToolCard title={title} caption="Библиотека чат-бота" href={href} />
+						</li>
+					))}
+				</ul>
+			</div>
+		</ContentTabs>
+	</Container>
+</section>

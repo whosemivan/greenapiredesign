@@ -1,0 +1,42 @@
+---
+import Container from '@/components/ui/Container/Container.astro';
+import SectionHeading from '@/components/ui/SectionHeading/SectionHeading.astro';
+import ChevronDownIcon from '@/assets/icons/chevron-down.svg';
+import { FAQ_LIST } from '@/constants/faq';
+import { SITE_URL } from '@/constants/links';
+import s from './Faq.module.scss';
+---
+
+<section class={s.faq} id="faq" aria-labelledby="faq-title">
+	<Container>
+		<div class={s.content}>
+			<SectionHeading
+				eyebrow="База знаний"
+				title="Часто задаваемые вопросы"
+				description="Ответы на популярные технические и организационные вопросы разработчиков."
+				titleId="faq-title"
+			/>
+
+			<div class={s.faqList}>
+				{FAQ_LIST.map((faqItem) => (
+					<details class={s.item} name="faq">
+						<summary class={s.question}>
+							<h3 class={s.questionText}>{faqItem.question}</h3>
+							<ChevronDownIcon class={s.chevron} aria-hidden="true" />
+						</summary>
+						<div class={s.answer}>
+							<p>{faqItem.answer}</p>
+							<a class={s.readMore} href={faqItem.readMoreHref}>
+								Подробнее в документации →
+							</a>
+						</div>
+					</details>
+				))}
+			</div>
+
+			<a class={s.allQuestions} href={`${SITE_URL}/docs/faq/`}>
+				Все вопросы и ответы →
+			</a>
+		</div>
+	</Container>
+</section>

@@ -1,0 +1,81 @@
+---
+import clsx from 'clsx';
+import { Image } from 'astro:assets';
+import DoubleCheckIcon from '@/assets/icons/double-check.svg';
+import webhooksImage from '@/assets/images/hero-webhooks.png';
+import { CHAT_PREVIEW, TERMINAL_REQUEST_LINES, TERMINAL_RESPONSE_LINES } from '@/constants/hero';
+import s from './ApiDemoWindow.module.scss';
+
+type Props = {
+	class?: string;
+};
+
+const { class: className } = Astro.props;
+
+const terminalLines = [...TERMINAL_REQUEST_LINES, [], ...TERMINAL_RESPONSE_LINES];
+---
+
+<div
+	class={clsx(s.apiDemoWindow, className)}
+	role="img"
+	aria-label="Пример запроса sendMessage к GREEN-API и доставленное сообщение в чате"
+>
+	<div class={s.glow} aria-hidden="true"></div>
+
+	<div class={s.window} aria-hidden="true">
+		<div class={s.titleBar}>
+			<div class={s.titleBarStart}>
+				<span class={clsx(s.windowDot, s.windowDotRed)}></span>
+				<span class={clsx(s.windowDot, s.windowDotOrange)}></span>
+				<span class={clsx(s.windowDot, s.windowDotGreen)}></span>
+				<span class={s.endpoint}>POST /waInstance7112/sendMessage</span>
+			</div>
+			<span class={s.responseStatus}>HTTP 200 OK</span>
+		</div>
+
+		<div class={s.body}>
+			<code class={s.terminal}>
+				{terminalLines.map((line) => (
+					<span class={s.terminalLine}>
+						{line.map((token) => (
+							<span class={token.kind && s[token.kind]}>{token.text}</span>
+						))}
+					</span>
+				))}
+				<span class={s.caret}></span>
+			</code>
+
+			<div class={s.chat}>
+				<div class={s.chatHeader}>
+					<span class={s.avatar}>{CHAT_PREVIEW.botInitials}</span>
+					<div>
+						<p class={s.botName}>{CHAT_PREVIEW.botName}</p>
+						<p class={s.botStatus}>online</p>
+					</div>
+				</div>
+
+				<div class={s.messagesList}>
+					<div class={clsx(s.message, s.messageIncoming)}>
+						<p>{CHAT_PREVIEW.incomingMessage}</p>
+						<span class={s.messageTime}>{CHAT_PREVIEW.time}</span>
+					</div>
+					<div class={clsx(s.message, s.messageOutgoing)}>
+						<p>{CHAT_PREVIEW.outgoingMessage}</p>
+						<span class={s.messageTime}>
+							{CHAT_PREVIEW.time}
+							<DoubleCheckIcon class={s.doubleCheck} />
+						</span>
+					</div>
+				</div>
+
+				<div class={s.featureCard}>
+					<Image class={s.featureImage} src={webhooksImage} alt="" width={64} height={44} />
+					<div>
+						<p class={s.featureTitle}>{CHAT_PREVIEW.featureTitle}</p>
+						<p class={s.featureText}>{CHAT_PREVIEW.featureText}</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

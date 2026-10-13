@@ -1,0 +1,16 @@
+---
+import Container from '@/components/ui/Container/Container.astro';
+import SectionHeading from '@/components/ui/SectionHeading/SectionHeading.astro';
+import { VideoPlayer } from '@/islands/VideoPlayer/VideoPlayer';
+import { VIDEO_SOURCES_LIST, VIDEO_TITLE } from '@/constants/video';
+import s from './Video.module.scss';
+---
+
+<section class={s.video} id="video" aria-labelledby="video-title">
+	<Container>
+		<div class={s.content}>
+			<SectionHeading eyebrow="Видео" title={VIDEO_TITLE} titleId="video-title" />
+			<VideoPlayer client:visible title={VIDEO_TITLE} sourcesList={VIDEO_SOURCES_LIST} />
+		</div>
+	</Container>
+</section>

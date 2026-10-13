@@ -1,0 +1,17 @@
+---
+import clsx from 'clsx';
+import type { AccentToneType } from '@/types/common';
+import s from './ToneIcon.module.scss';
+
+type Props = {
+	tone?: AccentToneType | 'neutral';
+	size?: 'small' | 'medium' | 'large';
+	class?: string;
+};
+
+const { tone = 'green', size = 'medium', class: className } = Astro.props;
+---
+
+<span class={clsx(s.toneIcon, s[tone], size !== 'medium' && s[size], className)} aria-hidden="true">
+	<slot />
+</span>

@@ -1,0 +1,13 @@
+---
+import ArrowRightIcon from '@/assets/icons/arrow-right.svg';
+import { SITE_URL } from '@/constants/links';
+import s from './TopBanner.module.scss';
+---
+
+<div class={s.topBanner}>
+	<span class={s.label}>New</span>
+	<a class={s.link} href={`${SITE_URL}/max`}>
+		<span class={s.text}>Интеграция с мессенджерами MAX и Telegram</span>
+		<ArrowRightIcon class={s.arrow} aria-hidden="true" />
+	</a>
+</div>

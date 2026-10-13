@@ -1,0 +1,128 @@
+@use '@/styles/breakpoints' as *;
+@use '@/styles/typography' as *;
+
+.contact {
+	padding: 96px 0;
+	background: var(--color-bg-section);
+
+	@include mobile {
+		padding: 64px 0;
+	}
+}
+
+.card {
+	display: grid;
+	grid-template-columns: 5fr 7fr;
+	gap: 48px;
+	padding: 56px;
+	border-radius: var(--radius-xl);
+	background: var(--color-surface);
+	box-shadow: 0 25px 50px -12px rgb(0 0 0 / 25%);
+
+	@include tablet {
+		grid-template-columns: minmax(0, 1fr);
+		gap: 40px;
+		padding: 40px;
+	}
+
+	@include mobile {
+		padding: 28px 16px;
+	}
+}
+
+.info {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	gap: 32px;
+}
+
+.intro {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 15px;
+}
+
+.badge {
+	padding: 4px 12px;
+	border-radius: var(--radius-full);
+	background: rgb(78 222 163 / 10%);
+	font-family: var(--font-mono);
+	font-size: 12px;
+	font-weight: 600;
+	line-height: 16px;
+	text-transform: uppercase;
+	color: var(--color-accent);
+}
+
+.title {
+	@include heading-2;
+	color: var(--color-text);
+}
+
+.description {
+	@include body;
+	color: var(--color-text-secondary);
+}
+
+.advantagesList {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	padding-top: 17px;
+}
+
+.advantage {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+
+	@include hover {
+		.advantageTitle {
+			color: var(--color-accent);
+		}
+	}
+}
+
+.advantageIcon {
+	display: flex;
+	flex-shrink: 0;
+	justify-content: center;
+	align-items: center;
+	width: 40px;
+	height: 40px;
+	border-radius: var(--radius-sm);
+	background: var(--color-surface-raised);
+}
+
+.advantageTitle {
+	display: block;
+	font-size: 13px;
+	font-weight: 600;
+	line-height: 20px;
+	color: var(--color-text);
+	transition: color 0.2s ease;
+}
+
+.advantageCaption {
+	display: block;
+	font-family: var(--font-mono);
+	font-size: 12px;
+	line-height: 20px;
+	color: var(--color-text-secondary);
+}
+
+.email {
+	font-size: 13px;
+	line-height: 20px;
+	color: var(--color-text-muted);
+}
+
+.emailLink {
+	color: var(--color-accent);
+
+	@include hover {
+		text-decoration: underline;
+	}
+}

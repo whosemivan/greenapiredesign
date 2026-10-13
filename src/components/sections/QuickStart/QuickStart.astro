@@ -1,0 +1,29 @@
+---
+import { Code } from 'astro:components';
+import Container from '@/components/ui/Container/Container.astro';
+import SectionHeading from '@/components/ui/SectionHeading/SectionHeading.astro';
+import { CodeTabs } from '@/islands/CodeTabs/CodeTabs';
+import { CODE_SAMPLES_LIST } from '@/constants/quickStart';
+import { GREEN_API_CODE_THEME } from '@/constants/codeTheme';
+import s from './QuickStart.module.scss';
+
+const tabsList = CODE_SAMPLES_LIST.map(({ id, label, code, docsHref }) => ({ id, label, code, docsHref }));
+---
+
+<section class={s.quickStart} id="quick-start" aria-labelledby="quick-start-title">
+	<Container class={s.container}>
+		<SectionHeading
+			eyebrow="Быстрый старт"
+			title="Подключите за 5 минут"
+			description="Используйте официальные готовые библиотеки для вашего стека технологий или работайте через стандартный cURL/Fetch."
+			align="split"
+			titleId="quick-start-title"
+		/>
+
+		<CodeTabs client:visible tabsList={tabsList}>
+			{CODE_SAMPLES_LIST.map((sample) => (
+				<Code slot={sample.id} code={sample.code} lang={sample.language} theme={GREEN_API_CODE_THEME} />
+			))}
+		</CodeTabs>
+	</Container>
+</section>

@@ -1,0 +1,78 @@
+@use '@/styles/breakpoints' as *;
+@use '@/styles/animations';
+
+.dropdown {
+	position: relative;
+}
+
+.trigger {
+	display: flex;
+	align-items: center;
+	gap: 4px;
+	padding: 6px 8px;
+	border-radius: var(--radius-sm);
+	font-size: 12px;
+	line-height: 24px;
+	color: var(--color-text-secondary);
+	transition: color 0.2s ease;
+
+	@include hover {
+		color: var(--color-text);
+	}
+}
+
+.chevron {
+	width: 8px;
+	height: auto;
+	transition: transform 0.2s ease;
+}
+
+.chevronOpen {
+	transform: rotate(180deg);
+}
+
+.menu {
+	position: absolute;
+	top: calc(100% + 8px);
+	z-index: 20;
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+	min-width: 220px;
+	padding: 6px;
+	background: var(--color-surface);
+	border: 1px solid rgb(255 255 255 / 6%);
+	border-radius: var(--radius-md);
+	box-shadow: var(--shadow-card);
+	@include animations.slideUpAnimation(0.2s);
+}
+
+.start {
+	left: 0;
+}
+
+.end {
+	right: 0;
+}
+
+.menuLink {
+	display: block;
+	padding: 8px 12px;
+	border-radius: var(--radius-sm);
+	font-size: 13px;
+	line-height: 20px;
+	color: var(--color-text-secondary);
+	white-space: nowrap;
+	transition:
+		background-color 0.2s ease,
+		color 0.2s ease;
+
+	@include hover {
+		background: var(--color-surface-raised);
+		color: var(--color-text);
+	}
+}
+
+.menuLinkActive {
+	color: var(--color-accent);
+}

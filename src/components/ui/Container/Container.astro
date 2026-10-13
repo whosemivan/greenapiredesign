@@ -1,0 +1,14 @@
+---
+import clsx from 'clsx';
+import s from './Container.module.scss';
+
+type Props = {
+	class?: string;
+};
+
+const { class: className } = Astro.props;
+---
+
+<div class={clsx(s.container, className)}>
+	<slot />
+</div>

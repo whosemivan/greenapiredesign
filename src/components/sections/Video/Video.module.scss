@@ -1,0 +1,19 @@
+@use '@/styles/breakpoints' as *;
+
+.video {
+	padding: 96px 0;
+	background: var(--color-bg-deep);
+
+	@include mobile {
+		padding: 64px 0;
+	}
+}
+
+.content {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 24px;
+	max-width: 674px;
+	margin: 0 auto;
+}

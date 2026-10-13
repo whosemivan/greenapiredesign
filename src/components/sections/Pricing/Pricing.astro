@@ -1,0 +1,27 @@
+---
+import Container from '@/components/ui/Container/Container.astro';
+import SectionHeading from '@/components/ui/SectionHeading/SectionHeading.astro';
+import { PricingPlans } from '@/islands/PricingPlans/PricingPlans';
+import { ABOUT_TARIFFS_URL, PRICING_PLANS_LIST } from '@/constants/pricing';
+import CorporateOffer from './components/CorporateOffer.astro';
+import s from './Pricing.module.scss';
+---
+
+<section class={s.pricing} id="pricing" aria-labelledby="pricing-title">
+	<Container class={s.container}>
+		<SectionHeading
+			eyebrow="Прозрачная стоимость"
+			title="Тарифные планы"
+			description="Выбирайте подходящий уровень масштабирования. Начните на бесплатном плане разработчика и масштабируйтесь по мере роста вашего продукта."
+			titleId="pricing-title"
+		/>
+
+		<PricingPlans client:visible plansList={PRICING_PLANS_LIST} />
+
+		<a class={s.aboutLink} href={ABOUT_TARIFFS_URL}>
+			Подробнее о тарифах →
+		</a>
+
+		<CorporateOffer />
+	</Container>
+</section>

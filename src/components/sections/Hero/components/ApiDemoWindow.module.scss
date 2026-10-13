@@ -1,0 +1,348 @@
+@use '@/styles/breakpoints' as *;
+
+$line-delay: 0.18s;
+$lines-count: 12;
+$request-lines-count: 7;
+$response-start: $line-delay * $lines-count + 0.3s;
+
+.apiDemoWindow {
+	position: relative;
+}
+
+.glow {
+	position: absolute;
+	inset: -4px;
+	border-radius: var(--radius-lg);
+	background: linear-gradient(90deg, rgb(78 222 163 / 20%) 0%, rgb(5 150 105 / 10%) 50%, rgb(2 102 255 / 20%) 100%);
+	filter: blur(12px);
+	opacity: 0.75;
+	animation: glowPulse 4s ease-in-out infinite alternate;
+}
+
+@keyframes glowPulse {
+	from {
+		opacity: 0.5;
+	}
+	to {
+		opacity: 0.9;
+	}
+}
+
+.window {
+	position: relative;
+	overflow: hidden;
+	border-radius: var(--radius-lg);
+	background: var(--color-bg);
+	box-shadow: 0 25px 50px -12px rgb(0 0 0 / 25%);
+}
+
+.titleBar {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 12px;
+	height: 48px;
+	padding: 0 16px;
+	background: var(--color-surface);
+}
+
+.titleBarStart {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	min-width: 0;
+}
+
+.windowDot {
+	flex-shrink: 0;
+	width: 12px;
+	height: 12px;
+	border-radius: var(--radius-full);
+}
+
+.windowDotRed {
+	background: var(--color-red);
+}
+
+.windowDotOrange {
+	background: var(--color-orange-strong);
+}
+
+.windowDotGreen {
+	background: #10b981;
+}
+
+.endpoint {
+	padding-left: 12px;
+	overflow: hidden;
+	font-family: var(--font-mono);
+	font-size: 12px;
+	line-height: 16px;
+	color: var(--color-text-secondary);
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+.responseStatus {
+	flex-shrink: 0;
+	padding: 2px 8px;
+	border-radius: var(--radius-xs);
+	background: rgb(78 222 163 / 20%);
+	font-family: var(--font-mono);
+	font-size: 11px;
+	font-weight: 500;
+	line-height: 24px;
+	color: var(--color-accent);
+	opacity: 0;
+	animation: popIn 0.4s ease-out $response-start forwards;
+}
+
+.body {
+	display: grid;
+	grid-template-columns: 7fr 5fr;
+	min-height: 380px;
+
+	@include mobile {
+		grid-template-columns: minmax(0, 1fr);
+	}
+}
+
+.terminal {
+	display: block;
+	padding: 20px;
+	overflow-x: auto;
+	font-family: var(--font-mono);
+	font-size: 12px;
+	line-height: 19.5px;
+	color: rgb(226 226 232 / 90%);
+
+	@include mobile {
+		font-size: 11px;
+	}
+}
+
+.terminalLine {
+	display: block;
+	min-height: 19.5px;
+	white-space: pre;
+	clip-path: inset(0 100% 0 0);
+	animation: typeLine 0.45s steps(24, end) forwards;
+
+	@for $index from 1 through $lines-count {
+		&:nth-child(#{$index}) {
+			$delay: $line-delay * ($index - 1);
+
+			// Ответ шлюза приходит с паузой после запроса
+			@if $index > $request-lines-count {
+				$delay: $delay + 0.6s;
+			}
+
+			animation-delay: $delay;
+		}
+	}
+}
+
+@keyframes typeLine {
+	to {
+		clip-path: inset(0 0 0 0);
+	}
+}
+
+.caret {
+	display: inline-block;
+	width: 7px;
+	height: 14px;
+	margin-top: 4px;
+	background: var(--color-accent);
+	vertical-align: middle;
+	animation: caretBlink 1s steps(1) infinite;
+}
+
+@keyframes caretBlink {
+	50% {
+		opacity: 0;
+	}
+}
+
+.command {
+	font-weight: 700;
+	color: var(--color-purple);
+}
+
+.url {
+	color: var(--color-blue-light);
+}
+
+.string {
+	color: var(--color-accent);
+}
+
+.key {
+	color: var(--color-blue);
+}
+
+.value {
+	color: var(--color-orange);
+}
+
+.comment {
+	color: #4a5a51;
+}
+
+.chat {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	gap: 12px;
+	padding: 16px;
+	background: #1a1c20;
+
+	@include mobile {
+		min-height: 320px;
+	}
+}
+
+.chatHeader {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	padding: 10px 10px 12px;
+	border-radius: var(--radius-sm);
+	background: rgb(22 25 30 / 80%);
+}
+
+.avatar {
+	display: flex;
+	flex-shrink: 0;
+	justify-content: center;
+	align-items: center;
+	width: 32px;
+	height: 32px;
+	border-radius: var(--radius-full);
+	background: rgb(78 222 163 / 20%);
+	font-size: 12px;
+	font-weight: 600;
+	color: var(--color-accent);
+}
+
+.botName {
+	font-size: 13px;
+	font-weight: 600;
+	line-height: 20px;
+	color: var(--color-text);
+}
+
+.botStatus {
+	display: flex;
+	align-items: center;
+	gap: 4px;
+	font-family: var(--font-mono);
+	font-size: 10px;
+	line-height: 16px;
+	color: var(--color-accent);
+
+	&::before {
+		content: '';
+		width: 6px;
+		height: 6px;
+		border-radius: var(--radius-full);
+		background: var(--color-accent);
+	}
+}
+
+.messagesList {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+
+.message {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+	max-width: 85%;
+	padding: 12px;
+	box-shadow: var(--shadow-soft);
+	font-size: 12px;
+	line-height: 16px;
+	opacity: 0;
+	animation: popIn 0.4s ease-out forwards;
+}
+
+.messageIncoming {
+	align-self: flex-start;
+	border-radius: 2px 16px 16px;
+	background: var(--color-surface);
+	color: var(--color-text);
+	animation-delay: 0.6s;
+}
+
+.messageOutgoing {
+	align-self: flex-end;
+	border-radius: 16px 2px 16px 16px;
+	background: rgb(5 150 105 / 90%);
+	color: #fff;
+	animation-delay: $response-start + 0.3s;
+
+	.messageTime {
+		color: rgb(78 222 163 / 80%);
+	}
+}
+
+.messageTime {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	gap: 4px;
+	font-family: var(--font-mono);
+	font-size: 10px;
+	line-height: 16px;
+	color: var(--color-text-muted);
+}
+
+.doubleCheck {
+	width: 12px;
+	height: 7px;
+}
+
+.featureCard {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	padding: 12px 8px 8px;
+	border-radius: var(--radius-md);
+	background: rgb(22 25 30 / 60%);
+}
+
+.featureImage {
+	flex-shrink: 0;
+	width: 64px;
+	height: 44px;
+	border-radius: 6px;
+	object-fit: cover;
+}
+
+.featureTitle {
+	font-family: var(--font-mono);
+	font-size: 12px;
+	font-weight: 600;
+	line-height: 16px;
+	color: var(--color-text);
+}
+
+.featureText {
+	font-size: 11px;
+	line-height: 18px;
+	color: var(--color-text-secondary);
+}
+
+@keyframes popIn {
+	from {
+		transform: translateY(8px) scale(0.97);
+		opacity: 0;
+	}
+	to {
+		transform: translateY(0) scale(1);
+		opacity: 1;
+	}
+}

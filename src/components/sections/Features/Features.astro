@@ -1,0 +1,60 @@
+---
+import Container from '@/components/ui/Container/Container.astro';
+import SectionHeading from '@/components/ui/SectionHeading/SectionHeading.astro';
+import ToneIcon from '@/components/ui/ToneIcon/ToneIcon.astro';
+import { Badge } from '@/components/ui/Badge/Badge';
+import { Button } from '@/components/ui/Button/Button';
+import LinkIcon from '@/assets/icons/link.svg';
+import { FEATURES_LIST } from '@/constants/features';
+import { LINK_BUILDER_URL } from '@/constants/links';
+import s from './Features.module.scss';
+---
+
+<section class={s.features} id="features" aria-labelledby="features-title">
+	<Container class={s.container}>
+		<SectionHeading
+			eyebrow="Технические возможности"
+			title="Всё необходимое для разработки"
+			description="Полная поддержка нативных функций мессенджера через лаконичный REST API с предсказуемыми JSON структурами."
+			titleId="features-title"
+		/>
+
+		<ul class={s.featuresList}>
+			{FEATURES_LIST.map(({ icon: Icon, ...feature }) => (
+				<li>
+					<a class={s.card} href={feature.href}>
+						<div class={s.cardHeader}>
+							<ToneIcon tone="neutral" size="small">
+								<Icon />
+							</ToneIcon>
+							<Badge tone={feature.methodTone} isCode>
+								{feature.method}
+							</Badge>
+						</div>
+						<h3 class={s.title}>{feature.title}</h3>
+						<p class={s.description}>{feature.description}</p>
+						<p class={s.note}>{feature.note}</p>
+					</a>
+				</li>
+			))}
+		</ul>
+
+		<div class={s.linkBuilder}>
+			<div class={s.linkBuilderContent}>
+				<ToneIcon tone="emerald" size="large">
+					<LinkIcon />
+				</ToneIcon>
+				<div>
+					<h3 class={s.title}>Бесплатный Конструктор ссылок</h3>
+					<p class={s.description}>
+						Создавайте удобные ссылки для общения в WhatsApp*. Клиенты попадут в Ваш чат с заранее заданным
+						текстом сообщения.
+					</p>
+				</div>
+			</div>
+			<Button href={LINK_BUILDER_URL} variant="secondary" className={s.linkBuilderAction}>
+				Открыть конструктор
+			</Button>
+		</div>
+	</Container>
+</section>

@@ -1,0 +1,38 @@
+---
+import { Image } from 'astro:assets';
+import { Button } from '@/components/ui/Button/Button';
+import corporateManagerImage from '@/assets/images/corporate-manager.jpg';
+import { REGISTRY_URL, SUPPORT_WHATSAPP_URL } from '@/constants/links';
+import s from './CorporateOffer.module.scss';
+---
+
+<div class={s.corporateOffer}>
+	<div class={s.content}>
+		<p class={s.badge}>Для Вашего бизнеса</p>
+		<h3 class={s.title}>Подключим вашу CRM-систему к WhatsApp* API</h3>
+		<p class={s.description}>
+			Увеличивайте продажи, станьте ближе к своим клиентам, подключите свою CRM к WhatsApp* и получайте больше
+			заказов и больше довольных клиентов. Экономьте на SMS-рассылках: используйте WhatsApp* API для
+			взаимодействия со своими клиентами.
+		</p>
+		<div class={s.actions}>
+			<Button href={SUPPORT_WHATSAPP_URL} isExternal>
+				Оставьте заявку на подключение
+			</Button>
+			<a class={s.note} href={REGISTRY_URL}>
+				Реестр отечественного ПО, запись № 26143
+			</a>
+		</div>
+	</div>
+
+	<div class={s.media}>
+		<Image
+			class={s.image}
+			src={corporateManagerImage}
+			alt="Сотрудник GREEN-API с ноутбуком"
+			widths={[320, 511]}
+			sizes="(max-width: 1023px) 100vw, 33vw"
+			loading="lazy"
+		/>
+	</div>
+</div>

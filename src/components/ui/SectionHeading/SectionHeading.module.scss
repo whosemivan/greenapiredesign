@@ -1,0 +1,62 @@
+@use '@/styles/breakpoints' as *;
+@use '@/styles/typography' as *;
+
+.heading {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
+.centered {
+	align-items: center;
+	max-width: 672px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.split {
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: flex-end;
+	gap: 32px;
+
+	.description {
+		max-width: 448px;
+	}
+
+	@include tablet {
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 16px;
+
+		.description {
+			max-width: 640px;
+		}
+	}
+}
+
+.titleGroup {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
+.eyebrow {
+	@include eyebrow;
+}
+
+.title {
+	@include heading-2;
+	color: var(--color-text);
+	text-wrap: balance;
+}
+
+.description {
+	@include body;
+	color: var(--color-text-secondary);
+	text-wrap: pretty;
+}
+
+.centered .description {
+	padding-top: 8px;
+}

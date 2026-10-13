@@ -1,0 +1,12 @@
+@use '@/styles/breakpoints' as *;
+
+.container {
+	width: 100%;
+	max-width: var(--container-width);
+	margin: 0 auto;
+	padding: 0 var(--container-padding);
+
+	@include mobile {
+		padding: 0 16px;
+	}
+}

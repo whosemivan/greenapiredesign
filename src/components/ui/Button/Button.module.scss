@@ -1,0 +1,82 @@
+@use '@/styles/breakpoints' as *;
+
+.button {
+	position: relative;
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	gap: 8px;
+	border-radius: var(--radius-sm);
+	font-family: var(--font-body);
+	font-weight: 600;
+	white-space: nowrap;
+	transition:
+		background-color 0.2s ease,
+		box-shadow 0.2s ease,
+		transform 0.2s ease,
+		color 0.2s ease;
+	cursor: pointer;
+
+	&:active {
+		transform: translateY(1px);
+	}
+
+	&:disabled {
+		opacity: 0.6;
+		cursor: not-allowed;
+	}
+}
+
+.primary {
+	background: var(--color-accent);
+	box-shadow: var(--shadow-accent);
+	color: var(--color-text-inverse);
+
+	@include hover {
+		background: #6ee7b7;
+		box-shadow: 0 12px 24px -6px rgb(78 222 163 / 45%);
+	}
+}
+
+.secondary {
+	background: var(--color-surface-raised);
+	box-shadow: var(--shadow-soft);
+	color: var(--color-text);
+
+	@include hover {
+		background: #262b32;
+	}
+}
+
+.ghost {
+	background: var(--color-surface);
+	box-shadow: var(--shadow-soft);
+	color: var(--color-text);
+	font-weight: 500;
+
+	@include hover {
+		background: var(--color-surface-raised);
+	}
+}
+
+.small {
+	padding: 8px 16px;
+	font-size: 13px;
+	line-height: 20px;
+}
+
+.medium {
+	padding: 12px 24px;
+	font-size: 13px;
+	line-height: 20px;
+}
+
+.large {
+	padding: 14px 24px;
+	font-size: 15px;
+	line-height: 24px;
+}
+
+.block {
+	width: 100%;
+}

@@ -1,0 +1,25 @@
+---
+import clsx from 'clsx';
+import s from './SectionHeading.module.scss';
+
+type Props = {
+	eyebrow: string;
+	title: string;
+	description?: string;
+	align?: 'centered' | 'split';
+	titleId?: string;
+	class?: string;
+};
+
+const { eyebrow, title, description, align = 'centered', titleId, class: className } = Astro.props;
+---
+
+<div class={clsx(s.heading, s[align], className)}>
+	<div class={s.titleGroup}>
+		<p class={s.eyebrow}>{eyebrow}</p>
+		<h2 class={s.title} id={titleId}>
+			{title}
+		</h2>
+	</div>
+	{description && <p class={s.description}>{description}</p>}
+</div>

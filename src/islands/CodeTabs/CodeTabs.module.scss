@@ -1,0 +1,136 @@
+@use '@/styles/breakpoints' as *;
+@use '@/styles/animations';
+
+.codeTabs {
+	overflow: hidden;
+	border-radius: var(--radius-lg);
+	background: var(--color-bg);
+	box-shadow: 0 25px 50px -12px rgb(0 0 0 / 25%);
+}
+
+.tabsList {
+	display: flex;
+	gap: 4px;
+	padding: 8px;
+	overflow-x: auto;
+	background: var(--color-surface);
+	scrollbar-width: none;
+
+	&::-webkit-scrollbar {
+		display: none;
+	}
+}
+
+.tab {
+	flex-shrink: 0;
+	padding: 8px 16px;
+	border-radius: var(--radius-sm);
+	font-family: var(--font-mono);
+	font-size: 12px;
+	font-weight: 500;
+	line-height: 16px;
+	color: var(--color-text-secondary);
+	transition:
+		background-color 0.2s ease,
+		color 0.2s ease;
+
+	@include hover {
+		color: var(--color-text);
+	}
+}
+
+.tabActive {
+	background: var(--color-surface-raised);
+	color: var(--color-accent);
+}
+
+.panels {
+	position: relative;
+	min-height: 406px;
+
+	@include mobile {
+		min-height: 0;
+	}
+}
+
+.toolbar {
+	position: absolute;
+	top: 24px;
+	right: 24px;
+	z-index: 1;
+	display: flex;
+	align-items: center;
+	gap: 16px;
+
+	@include mobile {
+		position: static;
+		justify-content: space-between;
+		padding: 16px 16px 0;
+	}
+}
+
+.docsLink {
+	font-family: var(--font-mono);
+	font-size: 12px;
+	line-height: 16px;
+	color: var(--color-text-muted);
+	transition: color 0.2s ease;
+
+	@include hover {
+		color: var(--color-accent);
+	}
+}
+
+.copyButton {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	padding: 6px 12px;
+	border-radius: var(--radius-sm);
+	background: var(--color-surface);
+	box-shadow: var(--shadow-soft);
+	font-family: var(--font-mono);
+	font-size: 12px;
+	line-height: 16px;
+	color: var(--color-text-secondary);
+	transition:
+		background-color 0.2s ease,
+		color 0.2s ease;
+
+	@include hover {
+		background: var(--color-surface-raised);
+		color: var(--color-text);
+	}
+}
+
+.copyButtonDone {
+	color: var(--color-accent);
+}
+
+.copyIcon {
+	width: 12px;
+	height: 13px;
+}
+
+.panel {
+	@include animations.fadeInAnimation(0.25s);
+
+	pre {
+		margin: 0;
+		padding: 32px;
+		overflow-x: auto;
+		background: transparent !important;
+		font-family: var(--font-mono);
+		font-size: 12px;
+		line-height: 19.5px;
+
+		@include mobile {
+			padding: 16px;
+			font-size: 11px;
+		}
+	}
+
+	code {
+		font: inherit;
+	}
+}

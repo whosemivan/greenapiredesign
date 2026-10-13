@@ -1,0 +1,18 @@
+// Использование: clsx(s.label, s[tone])
+$tone-colors: (
+	'neutral': var(--color-text-secondary),
+	'green': var(--color-accent),
+	'emerald': var(--color-accent-strong),
+	'blue': var(--color-blue),
+	'cyan': var(--color-cyan),
+	'purple': var(--color-purple),
+	'orange': var(--color-orange),
+);
+
+@mixin tone-text-colors {
+	@each $tone, $color in $tone-colors {
+		&.#{$tone} {
+			color: $color;
+		}
+	}
+}

@@ -1,0 +1,218 @@
+@use '@/styles/breakpoints' as *;
+
+.footer {
+	padding: 64px 0 48px;
+	background: var(--color-bg);
+	box-shadow: 0 -1px 6px rgb(0 0 0 / 50%);
+
+	@include mobile {
+		padding: 48px 0 32px;
+	}
+}
+
+.top {
+	display: grid;
+	grid-template-columns: 2fr 3fr 2fr;
+	gap: 40px;
+	padding-bottom: 48px;
+
+	@include tablet {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+
+	@include mobile {
+		grid-template-columns: minmax(0, 1fr);
+		gap: 32px;
+	}
+}
+
+.brand {
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+
+	@include tablet {
+		grid-column: 1 / -1;
+	}
+}
+
+.socialList {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+}
+
+.socialLink {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 36px;
+	height: 36px;
+	border-radius: var(--radius-sm);
+	background: var(--color-surface);
+	color: var(--color-text-secondary);
+	transition:
+		background-color 0.2s ease,
+		color 0.2s ease;
+
+	@include hover {
+		background: var(--color-surface-raised);
+		color: var(--color-accent);
+	}
+}
+
+.app {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+
+.storesList {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+}
+
+.storeBadge {
+	width: auto;
+	height: 40px;
+	transition: opacity 0.2s ease;
+
+	@include hover {
+		opacity: 0.8;
+	}
+}
+
+.columnTitle {
+	font-family: var(--font-mono);
+	font-size: 12px;
+	font-weight: 600;
+	line-height: 16px;
+	letter-spacing: 0.6px;
+	text-transform: uppercase;
+	color: var(--color-text);
+}
+
+.menu {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+
+.menuList {
+	columns: 2;
+	column-gap: 24px;
+
+	li {
+		padding-bottom: 12px;
+		break-inside: avoid;
+	}
+}
+
+.support {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+
+.supportList {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+
+.supportLink {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	font-size: 13px;
+	line-height: 20px;
+	color: var(--color-text-secondary);
+	transition: color 0.2s ease;
+
+	@include hover {
+		color: var(--color-accent);
+	}
+}
+
+.supportIcon {
+	flex-shrink: 0;
+	width: 18px;
+	height: 18px;
+	color: var(--color-accent);
+}
+
+.columns {
+	display: grid;
+	grid-template-columns: repeat(6, minmax(0, 1fr));
+	gap: 32px;
+	padding: 40px 0 48px;
+	border-top: 1px solid rgb(255 255 255 / 6%);
+
+	@include laptop {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+	}
+
+	@include mobile {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 28px 16px;
+	}
+}
+
+.column {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+
+.linksList {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+
+.link {
+	font-size: 13px;
+	line-height: 20px;
+	color: var(--color-text-secondary);
+	transition: color 0.2s ease;
+
+	@include hover {
+		color: var(--color-accent);
+	}
+}
+
+.bottom {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+	padding-top: 32px;
+	border-top: 1px solid rgb(255 255 255 / 6%);
+}
+
+.company {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+	font-size: 13px;
+	font-style: normal;
+	line-height: 20px;
+	color: var(--color-text-secondary);
+}
+
+.companyName {
+	color: var(--color-text);
+}
+
+.disclaimer {
+	font-size: 12px;
+	line-height: 18px;
+	color: var(--color-text-muted);
+}
+
+.copyright {
+	font-family: var(--font-mono);
+	font-size: 12px;
+	line-height: 16px;
+	color: var(--color-text-muted);
+}

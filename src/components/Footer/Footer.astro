@@ -1,0 +1,131 @@
+---
+import Container from '@/components/ui/Container/Container.astro';
+import Logo from '@/components/Logo/Logo.astro';
+import {
+	APP_STORES_LIST,
+	COMPANY_DETAILS,
+	FOOTER_COLUMNS_LIST,
+	FOOTER_MENU_LIST,
+	META_DISCLAIMER,
+	SOCIAL_LINKS_LIST,
+	SUPPORT_LINKS_LIST,
+} from '@/constants/footer';
+import s from './Footer.module.scss';
+
+const currentYear = new Date().getFullYear();
+
+const getExternalLinkProps = (isExternal?: boolean) =>
+	isExternal ? { target: '_blank', rel: 'noopener noreferrer' } : {};
+---
+
+<footer class={s.footer}>
+	<Container>
+		<div class={s.top}>
+			<div class={s.brand}>
+				<Logo />
+
+				<ul class={s.socialList}>
+					{SOCIAL_LINKS_LIST.map(({ label, href, icon: Icon }) => (
+						<li>
+							<a
+								class={s.socialLink}
+								href={href}
+								aria-label={label}
+								title={label}
+								target="_blank"
+								rel="noopener noreferrer"
+							>
+								<Icon aria-hidden="true" />
+							</a>
+						</li>
+					))}
+				</ul>
+
+				<div class={s.app}>
+					<p class={s.columnTitle}>Мобильное приложение</p>
+					<ul class={s.storesList}>
+						{APP_STORES_LIST.map((store) => (
+							<li>
+								<a href={store.href} target="_blank" rel="noopener noreferrer">
+									<img
+										class={s.storeBadge}
+										src={store.imageSrc}
+										alt={store.label}
+										width={store.width}
+										height={store.height}
+										loading="lazy"
+									/>
+								</a>
+							</li>
+						))}
+					</ul>
+				</div>
+			</div>
+
+			<nav class={s.menu} aria-label="Меню">
+				<p class={s.columnTitle}>Меню</p>
+				<ul class={s.menuList}>
+					{FOOTER_MENU_LIST.map((link) => (
+						<li>
+							<a class={s.link} href={link.href} {...getExternalLinkProps(link.isExternal)}>
+								{link.label}
+							</a>
+						</li>
+					))}
+				</ul>
+			</nav>
+
+			<div class={s.support} id="footer-support">
+				<p class={s.columnTitle}>Техподдержка</p>
+				<ul class={s.supportList}>
+					{SUPPORT_LINKS_LIST.map(({ id, label, href, icon: Icon }) => (
+						<li>
+							<a class={s.supportLink} href={href} {...getExternalLinkProps(id !== 'email')}>
+								<Icon class={s.supportIcon} aria-hidden="true" />
+								{label}
+							</a>
+						</li>
+					))}
+				</ul>
+			</div>
+		</div>
+
+		<div class={s.columns}>
+			{FOOTER_COLUMNS_LIST.map((column) => (
+				<nav class={s.column} aria-label={column.title}>
+					<p class={s.columnTitle}>{column.title}</p>
+					<ul class={s.linksList}>
+						{column.linksList.map((link) => (
+							<li>
+								<a class={s.link} href={link.href} {...getExternalLinkProps(link.isExternal)}>
+									{link.label}
+								</a>
+							</li>
+						))}
+					</ul>
+				</nav>
+			))}
+		</div>
+
+		<div class={s.bottom}>
+			<address class={s.company}>
+				<p class={s.companyName}>{COMPANY_DETAILS.name}</p>
+				<p>{COMPANY_DETAILS.requisites}</p>
+				<p>
+					Телефон:{' '}
+					<a class={s.link} href={COMPANY_DETAILS.phoneHref}>
+						{COMPANY_DETAILS.phone}
+					</a>
+				</p>
+				<p>{COMPANY_DETAILS.address}</p>
+				<p>{COMPANY_DETAILS.okved}</p>
+				<a class={s.link} href={COMPANY_DETAILS.registryHref}>
+					{COMPANY_DETAILS.registry}
+				</a>
+			</address>
+
+			<p class={s.disclaimer}>{META_DISCLAIMER}</p>
+			<p class={s.copyright}>GREEN API © 2015 - {currentYear}</p>
+		</div>
+	</Container>
+</footer>

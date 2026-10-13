@@ -1,0 +1,24 @@
+.logo {
+	display: flex;
+	flex-shrink: 0;
+	align-items: center;
+	gap: 10px;
+}
+
+.icon {
+	width: 28px;
+	height: 36px;
+}
+
+.wordmark {
+	font-family: var(--font-heading);
+	font-size: 18px;
+	font-weight: 700;
+	line-height: 26px;
+	letter-spacing: -0.45px;
+	color: var(--color-text);
+}
+
+.accent {
+	color: var(--color-accent);
+}

@@ -1,0 +1,81 @@
+@use 'breakpoints' as *;
+
+@mixin eyebrow {
+	font-family: var(--font-mono);
+	font-size: 12px;
+	font-weight: 600;
+	line-height: 16px;
+	letter-spacing: 1.2px;
+	text-transform: uppercase;
+	color: var(--color-accent);
+}
+
+@mixin heading-1 {
+	font-family: var(--font-heading);
+	font-size: 52px;
+	font-weight: 600;
+	line-height: 58px;
+	letter-spacing: -1.3px;
+
+	@include tablet {
+		font-size: 44px;
+		line-height: 50px;
+	}
+
+	@include mobile {
+		font-size: 34px;
+		line-height: 40px;
+		letter-spacing: -0.8px;
+	}
+}
+
+@mixin heading-2 {
+	font-family: var(--font-heading);
+	font-size: 40px;
+	font-weight: 600;
+	line-height: 48px;
+	letter-spacing: -1px;
+
+	@include mobile {
+		font-size: 30px;
+		line-height: 36px;
+		letter-spacing: -0.6px;
+	}
+}
+
+@mixin heading-3 {
+	font-family: var(--font-heading);
+	font-size: 18px;
+	font-weight: 600;
+	line-height: 26px;
+	letter-spacing: -0.18px;
+}
+
+@mixin body-large {
+	font-family: var(--font-body);
+	font-size: 18px;
+	line-height: 29px;
+
+	@include mobile {
+		font-size: 16px;
+		line-height: 26px;
+	}
+}
+
+@mixin body {
+	font-family: var(--font-body);
+	font-size: 15px;
+	line-height: 24px;
+}
+
+@mixin body-small {
+	font-family: var(--font-body);
+	font-size: 13px;
+	line-height: 20px;
+}
+
+@mixin mono-small {
+	font-family: var(--font-mono);
+	font-size: 12px;
+	line-height: 16px;
+}

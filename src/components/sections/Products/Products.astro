@@ -1,0 +1,42 @@
+---
+import clsx from 'clsx';
+import Container from '@/components/ui/Container/Container.astro';
+import SectionHeading from '@/components/ui/SectionHeading/SectionHeading.astro';
+import ToneIcon from '@/components/ui/ToneIcon/ToneIcon.astro';
+import ArrowRightIcon from '@/assets/icons/arrow-right-small.svg';
+import { PRODUCTS_LIST } from '@/constants/products';
+import s from './Products.module.scss';
+---
+
+<section class={s.products} id="products" aria-labelledby="products-title">
+	<Container class={s.container}>
+		<SectionHeading
+			eyebrow="Архитектура экосистемы"
+			title="Продукты GREEN-API"
+			description="Полный стек модулей для омниканальной коммуникации, автоматизации техподдержки и интеграции нейросетей в бизнес-процессы."
+			align="split"
+			titleId="products-title"
+		/>
+
+		<ul class={s.productsList}>
+			{PRODUCTS_LIST.map(({ icon: Icon, ...product }) => (
+				<li>
+					<a class={s.card} href={product.href}>
+						<div class={s.cardBody}>
+							<ToneIcon tone={product.tone}>
+								<Icon />
+							</ToneIcon>
+							<p class={clsx(s.label, s[product.tone])}>{product.label}</p>
+							<h3 class={s.title}>{product.title}</h3>
+							<p class={s.description}>{product.description}</p>
+						</div>
+						<span class={s.more}>
+							{product.linkText}
+							<ArrowRightIcon class={s.moreArrow} aria-hidden="true" />
+						</span>
+					</a>
+				</li>
+			))}
+		</ul>
+	</Container>
+</section>

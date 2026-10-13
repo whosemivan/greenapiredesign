@@ -1,0 +1,53 @@
+---
+import Container from '@/components/ui/Container/Container.astro';
+import { ContactForm } from '@/islands/ContactForm/ContactForm';
+import { CONTACT_ADVANTAGES_LIST } from '@/constants/contact';
+import { SITE_URL, SUPPORT_EMAIL } from '@/constants/links';
+import s from './Contact.module.scss';
+---
+
+<section class={s.contact} id="contact" aria-labelledby="contact-title">
+	<Container>
+		<div class={s.card}>
+			<div class={s.info}>
+				<div class={s.intro}>
+					<p class={s.badge}>Связь с командой</p>
+					<h2 class={s.title} id="contact-title">
+						Напишите нам или оставьте заявку
+					</h2>
+					<p class={s.description}>
+						Поможем подобрать архитектуру решения под ваш стек, организуем тестовый период на тарифе
+						«Бизнес» или «Чатбот» и ответим на любые инженерные вопросы.
+					</p>
+
+					<ul class={s.advantagesList}>
+						{CONTACT_ADVANTAGES_LIST.map(({ icon: Icon, title, caption }) => (
+							<li class={s.advantage}>
+								<span class={s.advantageIcon} aria-hidden="true">
+									<Icon />
+								</span>
+								<div>
+									<p class={s.advantageTitle}>{title}</p>
+									<p class={s.advantageCaption}>{caption}</p>
+								</div>
+							</li>
+						))}
+					</ul>
+				</div>
+
+				<p class={s.email}>
+					Прямая почта:{' '}
+					<a class={s.emailLink} href={`mailto:${SUPPORT_EMAIL}`}>
+						{SUPPORT_EMAIL}
+					</a>
+				</p>
+			</div>
+
+			<ContactForm
+				client:idle
+				privacyPolicyHref={`${SITE_URL}/privacy-policy`}
+				userAgreementHref={`${SITE_URL}/user-agreement`}
+			/>
+		</div>
+	</Container>
+</section>

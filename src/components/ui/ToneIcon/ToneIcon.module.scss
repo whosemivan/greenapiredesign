@@ -1,0 +1,48 @@
+.toneIcon {
+	display: flex;
+	flex-shrink: 0;
+	justify-content: center;
+	align-items: center;
+	width: 48px;
+	height: 48px;
+	border-radius: var(--radius-md);
+}
+
+.small {
+	width: 40px;
+	height: 40px;
+	border-radius: var(--radius-sm);
+}
+
+.large {
+	width: 56px;
+	height: 56px;
+}
+
+.neutral {
+	background: var(--color-surface-strong);
+}
+
+.green {
+	background: rgb(78 222 163 / 10%);
+}
+
+.emerald {
+	background: rgb(16 185 129 / 20%);
+}
+
+.blue {
+	background: rgb(2 102 255 / 20%);
+}
+
+.cyan {
+	background: rgb(6 182 212 / 20%);
+}
+
+.purple {
+	background: rgb(168 85 247 / 20%);
+}
+
+.orange {
+	background: rgb(255 126 56 / 20%);
+}

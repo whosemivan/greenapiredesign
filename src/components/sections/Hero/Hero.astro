@@ -1,0 +1,64 @@
+---
+import clsx from 'clsx';
+import Container from '@/components/ui/Container/Container.astro';
+import { Button } from '@/components/ui/Button/Button';
+import ArrowRightIcon from '@/assets/icons/arrow-right-bold.svg';
+import TerminalIcon from '@/assets/icons/terminal.svg';
+import { CONSOLE_URL, DOCS_URL } from '@/constants/links';
+import { HERO_STATS_LIST, ROTATING_API_NAMES_LIST, SERVICE_STATUS_TEXT } from '@/constants/hero';
+import ApiDemoWindow from './components/ApiDemoWindow.astro';
+import s from './Hero.module.scss';
+---
+
+<section class={s.hero} aria-labelledby="hero-title">
+	<div class={s.glowGreen} aria-hidden="true"></div>
+	<div class={s.glowBlue} aria-hidden="true"></div>
+
+	<Container class={s.container}>
+		<p class={s.status}>
+			<span class={s.statusDot} aria-hidden="true"></span>
+			{SERVICE_STATUS_TEXT}
+		</p>
+
+		<div class={s.grid}>
+			<div class={s.content}>
+				<h1 class={s.title} id="hero-title">
+					<span class="visually-hidden">{ROTATING_API_NAMES_LIST.join(', ')}</span>
+					<span class={s.rotatingNames} aria-hidden="true">
+						{ROTATING_API_NAMES_LIST.map((apiName) => (
+							<span class={s.rotatingName}>{apiName}</span>
+						))}
+					</span>
+					для разработчиков и бизнеса
+				</h1>
+
+				<p class={s.subtitle}>
+					Отправляйте и получайте сообщения, картинки и видео через стабильный шлюз WhatsApp* API. Зелёный
+					свет вашим идеям!
+				</p>
+
+				<div class={s.actions}>
+					<Button href={CONSOLE_URL} size="large" className={s.primaryAction}>
+						Начать бесплатно
+						<ArrowRightIcon class={s.actionArrow} aria-hidden="true" />
+					</Button>
+					<Button href={DOCS_URL} variant="ghost" size="large">
+						<TerminalIcon class={s.terminalIcon} aria-hidden="true" />
+						Документация
+					</Button>
+				</div>
+
+				<dl class={s.statsList}>
+					{HERO_STATS_LIST.map((stat) => (
+						<div class={s.stat}>
+							<dt class={s.statLabel}>{stat.label}</dt>
+							<dd class={clsx(s.statValue, stat.isAccent && s.statValueAccent)}>{stat.value}</dd>
+						</div>
+					))}
+				</dl>
+			</div>
+
+			<ApiDemoWindow class={s.demo} />
+		</div>
+	</Container>
+</section>

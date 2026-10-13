@@ -1,0 +1,159 @@
+@use '@/styles/breakpoints' as *;
+@use '@/styles/tones' as *;
+@use '@/styles/animations';
+
+.card {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	padding: 28px;
+	border-radius: var(--radius-lg);
+	background: var(--color-surface);
+	box-shadow:
+		0 20px 25px -5px rgb(0 0 0 / 10%),
+		0 8px 10px -6px rgb(0 0 0 / 10%);
+	transition: transform 0.25s ease;
+
+	@include hover {
+		transform: translateY(-4px);
+	}
+}
+
+.cardHighlighted {
+	background: var(--color-surface-raised);
+	box-shadow:
+		0 25px 50px -12px rgb(0 0 0 / 25%),
+		inset 0 0 0 1px rgb(78 222 163 / 20%);
+}
+
+.bonusLabel {
+	position: absolute;
+	top: -12px;
+	left: 50%;
+	padding: 2px 12px;
+	border-radius: var(--radius-full);
+	background: var(--color-accent);
+	box-shadow: var(--shadow-soft);
+	font-family: var(--font-mono);
+	font-size: 11px;
+	font-weight: 600;
+	line-height: 20px;
+	letter-spacing: 0.55px;
+	text-transform: uppercase;
+	color: var(--color-text-inverse);
+	white-space: nowrap;
+	// Центрируем через translate: анимация меняет transform и не сбивает позицию
+	translate: -50% 0;
+	@include animations.slideUpAnimation(0.25s);
+}
+
+.name {
+	font-family: var(--font-mono);
+	font-size: 12px;
+	font-weight: 600;
+	line-height: 16px;
+	text-transform: uppercase;
+	@include tone-text-colors;
+}
+
+.price {
+	display: flex;
+	align-items: baseline;
+	gap: 4px;
+	padding-top: 16px;
+	font-family: var(--font-heading);
+	color: var(--color-text);
+}
+
+.priceValue {
+	font-size: 40px;
+	font-weight: 700;
+	line-height: 48px;
+	letter-spacing: -1.2px;
+}
+
+.priceUnit {
+	font-family: var(--font-body);
+	font-size: 15px;
+	line-height: 24px;
+	color: var(--color-text-secondary);
+}
+
+.periodSwitcher {
+	display: flex;
+	align-self: flex-start;
+	margin-top: 12px;
+	padding: 4px;
+	border-radius: var(--radius-full);
+	background: var(--color-surface);
+}
+
+.periodButton {
+	padding: 6px 16px;
+	border-radius: var(--radius-full);
+	font-family: var(--font-mono);
+	font-size: 12px;
+	font-weight: 600;
+	line-height: 16px;
+	color: var(--color-text-secondary);
+	transition:
+		background-color 0.25s ease,
+		color 0.25s ease;
+
+	@include hover {
+		color: var(--color-text);
+	}
+}
+
+.periodButtonActive {
+	background: var(--color-accent);
+	color: var(--color-text-inverse);
+
+	@include hover {
+		color: var(--color-text-inverse);
+	}
+}
+
+.featuresList {
+	display: flex;
+	flex-grow: 1;
+	flex-direction: column;
+	gap: 12px;
+	padding: 24px 0 32px;
+}
+
+.feature {
+	display: flex;
+	align-items: flex-start;
+	gap: 8px;
+	font-size: 13px;
+	line-height: 20px;
+	color: var(--color-text-secondary);
+
+	strong {
+		font-weight: 600;
+		color: var(--color-text);
+	}
+}
+
+.featureIconBox {
+	display: flex;
+	flex-shrink: 0;
+	justify-content: center;
+	align-items: center;
+	width: 15px;
+	height: 20px;
+}
+
+.featureIcon {
+	color: var(--color-accent);
+
+	&.blue {
+		color: var(--color-blue);
+	}
+}
+
+.action {
+	margin-top: auto;
+}

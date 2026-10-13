@@ -1,0 +1,67 @@
+@use '@/styles/breakpoints' as *;
+
+.topBanner {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 8px;
+	height: 32px;
+	padding: 6px 16px;
+	background: rgb(22 25 30 / 90%);
+	backdrop-filter: blur(6px);
+	box-shadow: 0 1px 2px 0 rgb(0 0 0 / 5%);
+}
+
+.label {
+	padding: 2px 6px;
+	border-radius: var(--radius-xs);
+	background: rgb(168 85 247 / 20%);
+	font-family: var(--font-mono);
+	font-size: 10px;
+	font-weight: 600;
+	line-height: 16px;
+	letter-spacing: 0.5px;
+	text-transform: uppercase;
+	color: var(--color-purple);
+}
+
+.link {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	min-width: 0;
+	font-family: var(--font-mono);
+	font-size: 12px;
+	font-weight: 500;
+	line-height: 16px;
+	color: var(--color-accent);
+
+	@include hover {
+		.text {
+			overflow: hidden;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+		}
+
+		.arrow {
+			transform: translateX(3px);
+		}
+	}
+
+	@include mobile {
+		font-size: 11px;
+	}
+}
+
+.text {
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+.arrow {
+	flex-shrink: 0;
+	width: 9px;
+	height: 9px;
+	transition: transform 0.2s ease;
+}

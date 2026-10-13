@@ -1,0 +1,21 @@
+---
+import CodeIcon from '@/assets/icons/code.svg';
+import s from './ToolCard.module.scss';
+
+type Props = {
+	title: string;
+	caption: string;
+	href: string;
+	icon?: typeof CodeIcon;
+};
+
+const { title, caption, href, icon: Icon = CodeIcon } = Astro.props;
+---
+
+<a class={s.toolCard} href={href}>
+	<span class={s.icon} aria-hidden="true">
+		<Icon />
+	</span>
+	<span class={s.title}>{title}</span>
+	<span class={s.caption}>{caption}</span>
+</a>

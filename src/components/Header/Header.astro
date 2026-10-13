@@ -1,0 +1,67 @@
+---
+import Logo from '@/components/Logo/Logo.astro';
+import TopBanner from '@/components/TopBanner/TopBanner.astro';
+import { Button } from '@/components/ui/Button/Button';
+import { NavigationDropdown } from '@/islands/NavigationDropdown/NavigationDropdown';
+import { MobileMenu } from '@/islands/MobileMenu/MobileMenu';
+import { CONSOLE_URL } from '@/constants/links';
+import { CURRENT_LANGUAGE_ID, HEADER_MENU_LIST, LANGUAGES_LIST } from '@/constants/navigation';
+import s from './Header.module.scss';
+---
+
+<header class={s.header}>
+	<TopBanner />
+
+	<div class={s.bar}>
+		<div class={s.container}>
+			<div class={s.start}>
+				<Logo />
+
+				<nav class={s.navigation} aria-label="Основное меню">
+					<ul class={s.menuList}>
+						{HEADER_MENU_LIST.map((menuItem) => (
+							<li>
+								{menuItem.children ? (
+									<NavigationDropdown
+										client:idle
+										label={menuItem.label}
+										linksList={menuItem.children}
+									/>
+								) : (
+									<a class={s.menuLink} href={menuItem.href}>
+										{menuItem.label}
+									</a>
+								)}
+							</li>
+						))}
+					</ul>
+				</nav>
+			</div>
+
+			<div class={s.end}>
+				<div class={s.languageSwitcher}>
+					<NavigationDropdown
+						client:idle
+						label="🇷🇺 RU"
+						triggerClassName={s.languageTrigger}
+						linksList={LANGUAGES_LIST}
+						activeId={CURRENT_LANGUAGE_ID}
+						align="end"
+					/>
+				</div>
+
+				<Button className={s.loginButton} href={CONSOLE_URL} size="small">
+					Войти
+				</Button>
+
+				<MobileMenu
+					client:idle
+					menuList={HEADER_MENU_LIST}
+					languagesList={LANGUAGES_LIST}
+					currentLanguageId={CURRENT_LANGUAGE_ID}
+					loginHref={CONSOLE_URL}
+				/>
+			</div>
+		</div>
+	</div>
+</header>

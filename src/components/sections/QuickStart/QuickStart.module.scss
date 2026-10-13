@@ -1,0 +1,20 @@
+@use '@/styles/breakpoints' as *;
+
+.quickStart {
+	padding: 96px 0;
+	background: var(--color-bg-section-alt);
+
+	@include mobile {
+		padding: 64px 0;
+	}
+}
+
+.container {
+	display: flex;
+	flex-direction: column;
+	gap: 48px;
+
+	@include mobile {
+		gap: 32px;
+	}
+}

@@ -1,0 +1,52 @@
+.badge {
+	display: inline-flex;
+	align-items: center;
+	padding: 2px 8px;
+	border-radius: var(--radius-xs);
+	font-family: var(--font-mono);
+	font-size: 11px;
+	line-height: 20px;
+	white-space: nowrap;
+}
+
+.neutral {
+	background: var(--color-surface-raised);
+	color: var(--color-accent);
+}
+
+.green {
+	background: rgb(78 222 163 / 10%);
+	color: var(--color-accent);
+}
+
+.emerald {
+	background: rgb(34 197 94 / 10%);
+	color: var(--color-accent-strong);
+}
+
+.blue {
+	background: rgb(179 197 255 / 10%);
+	color: var(--color-blue);
+}
+
+.cyan {
+	background: rgb(6 182 212 / 10%);
+	color: var(--color-cyan);
+}
+
+.purple {
+	background: rgb(168 85 247 / 10%);
+	color: var(--color-purple);
+}
+
+.orange {
+	background: rgb(255 182 147 / 10%);
+	color: var(--color-orange);
+}
+
+.code {
+	padding: 4px 10px;
+	background: var(--color-surface-muted);
+	font-size: 12px;
+	line-height: 16px;
+}
